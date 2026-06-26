@@ -5,51 +5,69 @@ const token = process.env.BOT_TOKEN;
 const bot = new TelegramBot(token, { polling: true });
 
 bot.onText(/\/start/, (msg) => {
-  bot.sendMessage(
-    msg.chat.id,
-    `🔥 Welcome to OG PABLO XER Bot!
+  bot.onText(/\/help/, (msg) => {
+  bot.sendMessage(msg.chat.id, `📖 PABLO XER Help
 
-Commands:
-/sensi - Get Sensitivity
-/dpi - Get DPI`
-  );
+📱 /android - Android Devices
+🍎 /iphone - iPhone Devices
+💻 /pc - PC Emulator
+🎯 /sensi - Best Sensitivity
+📶 /dpi - Best DPI
+
+⚡ Powered by PABLO XER`);
+});
+
+bot.onText(/\/android/, (msg) => {
+  bot.sendMessage(msg.chat.id, "📱 Send your Android Device Name\n\nExample:\nNothing Phone 3a Pro");
+});
+
+bot.onText(/\/iphone/, (msg) => {
+  bot.sendMessage(msg.chat.id, "🍎 Send your iPhone Model\n\nExample:\niPhone 15 Pro Max");
+});
+
+bot.onText(/\/pc/, (msg) => {
+  bot.sendMessage(msg.chat.id, "💻 Enter your Emulator Name\n\nExample:\nGameLoop\nBlueStacks\nLDPlayer");
 });
 
 bot.onText(/\/sensi/, (msg) => {
-  bot.sendMessage(
-    msg.chat.id,
-    `📱 Reply with your RAM:
+  bot.sendMessage(msg.chat.id, `📱 Send Your Device & RAM
 
-4GB
-6GB
-8GB
-12GB`
-  );
+Example:
+
+Device: Nothing Phone 3a Pro
+RAM: 12GB
+
+Supported Devices:
+📱 Android
+🍎 iPhone
+💻 PC Emulator`);
 });
+  bot.sendMessage(msg.chat.id, `🔥 PABLO XER 🔥
 
-bot.on("message", (msg) => {
-  const text = msg.text;
+📱 Device: ${device}
+💾 RAM: ${ram}
 
-  if (text === "4GB") {
-    bot.sendMessage(msg.chat.id, "🎯 Recommended Sensitivity:\nGeneral: 100\nRed Dot: 95\n2x: 85\n4x: 75\nSniper: 50\nFree Look: 67");
-  }
+━━━━━━━━━━━━━━━━━━━━━━
 
-  if (text === "6GB") {
-    bot.sendMessage(msg.chat.id, "🎯 Recommended Sensitivity:\nGeneral: 100\nRed Dot: 100\n2x: 90\n4x: 80\nSniper: 55\nFree Look: 70");
-  }
+🎯 Recommended Sensitivity
 
-  if (text === "8GB") {
-    bot.sendMessage(msg.chat.id, "🎯 Recommended Sensitivity:\nGeneral: 100\nRed Dot: 100\n2x: 95\n4x: 85\nSniper: 60\nFree Look: 75");
-  }
+⚡ General : 200
+🔴 Red Dot : 195
+🎯 2X Scope : 185
+🔭 4X Scope : 175
+🎯 Sniper Scope : 140
+👀 Free Look : 160
 
-  if (text === "12GB") {
-    bot.sendMessage(msg.chat.id, "🎯 Recommended Sensitivity:\nGeneral: 100\nRed Dot: 100\n2x: 100\n4x: 90\nSniper: 65\nFree Look: 80");
-  }
-});
+━━━━━━━━━━━━━━━━━━━━━━
 
-bot.onText(/\/dpi/, (msg) => {
-  bot.sendMessage(
-    msg.chat.id,
-    "🖥️ Recommended DPI:\nLow End: 480\nMid End: 560\nHigh End: 640"
-  );
+📶 Recommended DPI
+
+🟢 Low-End : 560
+🟡 Mid-End : 680
+🔴 High-End : 720
+
+━━━━━━━━━━━━━━━━━━━━━━
+⚡ Powered by PABLO XER
+🚀 Best Settings for Free Fire
+━━━━━━━━━━━━━━━━━━━━━━`);
 });
