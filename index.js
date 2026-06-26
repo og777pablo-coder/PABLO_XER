@@ -5,49 +5,87 @@ const token = process.env.BOT_TOKEN;
 const bot = new TelegramBot(token, { polling: true });
 
 bot.onText(/\/start/, (msg) => {
-  bot.onText(/\/help/, (msg) => {
+  bot.sendMessage(msg.chat.id, `🔥 Welcome to PABLO XER 🔥
+
+🎮 Free Fire Sensitivity & DPI Bot
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+📋 Available Commands
+
+🚀 /start - Home
+📱 /device - Select Device
+🎯 /sensi - Sensitivity
+📶 /dpi - DPI
+❓ /help - Help
+
+━━━━━━━━━━━━━━━━━━━━━━
+⚡ Powered by PABLO XER
+━━━━━━━━━━━━━━━━━━━━━━`);
+});
+
+bot.onText(/\/help/, (msg) => {
   bot.sendMessage(msg.chat.id, `📖 PABLO XER Help
+
+📱 /device - Select Device
+🎯 /sensi - Best Sensitivity
+📶 /dpi - Best DPI
+
+⚡ Powered by PABLO XER`);
+});
 
 bot.onText(/\/device/, (msg) => {
   bot.sendMessage(msg.chat.id, `📱 Choose Your Platform
 
 🤖 Android
 🍎 iOS
-💻 PC Emulator
+💻 PC
 
 Reply with:
 Android
 iOS
 PC`);
+});bot.onText(/\/sensi/, (msg) => {
+  bot.sendMessage(msg.chat.id, `📱 Send Your Device & RAM
+
+Example:
+
+Device: Nothing Phone 3a Pro
+RAM: 12GB`);
 });
-bot.on("message", (msg) => {
-  const text = msg.text.toLowerCase();
 
-  if (text === "android") {
-    bot.sendMessage(msg.chat.id, "📱 Enter your Android device.\n\nExample:\nNothing Phone 3a Pro");
-  }
+bot.onText(/\/dpi/, (msg) => {
+  bot.sendMessage(msg.chat.id, `📶 DPI Guide
 
-  if (text === "ios") {
-    bot.sendMessage(msg.chat.id, "🍎 Enter your iPhone model.\n\nExample:\niPhone 15 Pro Max");
-  }
+4GB  ➜ 520
+6GB  ➜ 580
+8GB  ➜ 640
+12GB ➜ 720
+16GB ➜ 800
 
-  if (text === "pc") {
-    bot.sendMessage(msg.chat.id, "💻 Enter your emulator.\n\nExample:\nGameLoop\nBlueStacks\nLDPlayer");
-  }
+⚡ Powered by PABLO XER`);
 });
+
 bot.on("message", (msg) => {
   const text = msg.text;
 
-  if (text.startsWith("Device:")) {
-    const lines = text.split("\n");
+  if (!text.startsWith("Device:")) return;
 
-    const device = lines[0].replace("Device:", "").trim();
-    const ram = lines[1].replace("RAM:", "").trim();
+  const lines = text.split("\n");
+  if (lines.length < 2) {
+    bot.sendMessage(msg.chat.id, "❌ Format:\n\nDevice: Your Device\nRAM: 12GB");
+    return;
+  }
 
-    bot.sendMessage(msg.chat.id, `🔥 PABLO XER 🔥
+  const device = lines[0].replace("Device:", "").trim();
+  const ram = lines[1].replace("RAM:", "").trim();
+
+  bot.sendMessage(msg.chat.id, `🔥 PABLO XER 🔥
 
 📱 Device: ${device}
 💾 RAM: ${ram}
+
+━━━━━━━━━━━━━━━━━━━━━━
 
 🎯 Recommended Sensitivity
 
@@ -55,8 +93,10 @@ bot.on("message", (msg) => {
 🔴 Red Dot : 195
 🎯 2X Scope : 185
 🔭 4X Scope : 175
-🎯 Sniper Scope : 140
+🎯 Sniper : 140
 👀 Free Look : 160
+
+━━━━━━━━━━━━━━━━━━━━━━
 
 📶 Recommended DPI
 
@@ -64,7 +104,25 @@ bot.on("message", (msg) => {
 
 ━━━━━━━━━━━━━━━━━━━━━━
 ⚡ Powered by PABLO XER 💀
-🚀 Best Settings for Free Fire 🔥🫶🏻
+🚀 Best Settings for Free Fire 🔥
 ━━━━━━━━━━━━━━━━━━━━━━`);
+});bot.on("message", (msg) => {
+  const text = msg.text.toLowerCase();
+
+  if (text === "android") {
+    bot.sendMessage(msg.chat.id,
+      "📱 Android Selected\n\nNow send:\n\nDevice: Nothing Phone 3a Pro\nRAM: 12GB");
+  }
+
+  if (text === "ios") {
+    bot.sendMessage(msg.chat.id,
+      "🍎 iPhone Selected\n\nNow send:\n\nDevice: iPhone 15 Pro Max\nRAM: 8GB");
+  }
+
+  if (text === "pc") {
+    bot.sendMessage(msg.chat.id,
+      "💻 PC Emulator Selected\n\nNow send:\n\nDevice: GameLoop\nRAM: 16GB");
   }
 });
+
+console.log("✅ PABLO XER Bot Started...");
