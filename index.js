@@ -8,46 +8,46 @@ bot.onText(/\/start/, (msg) => {
   bot.onText(/\/help/, (msg) => {
   bot.sendMessage(msg.chat.id, `📖 PABLO XER Help
 
-📱 /android - Android Devices
-🍎 /iphone - iPhone Devices
-💻 /pc - PC Emulator
-🎯 /sensi - Best Sensitivity
-📶 /dpi - Best DPI
+bot.onText(/\/device/, (msg) => {
+  bot.sendMessage(msg.chat.id, `📱 Choose Your Platform
 
-⚡ Powered by PABLO XER`);
+🤖 Android
+🍎 iOS
+💻 PC Emulator
+
+Reply with:
+Android
+iOS
+PC`);
 });
+bot.on("message", (msg) => {
+  const text = msg.text.toLowerCase();
 
-bot.onText(/\/android/, (msg) => {
-  bot.sendMessage(msg.chat.id, "📱 Send your Android Device Name\n\nExample:\nNothing Phone 3a Pro");
+  if (text === "android") {
+    bot.sendMessage(msg.chat.id, "📱 Enter your Android device.\n\nExample:\nNothing Phone 3a Pro");
+  }
+
+  if (text === "ios") {
+    bot.sendMessage(msg.chat.id, "🍎 Enter your iPhone model.\n\nExample:\niPhone 15 Pro Max");
+  }
+
+  if (text === "pc") {
+    bot.sendMessage(msg.chat.id, "💻 Enter your emulator.\n\nExample:\nGameLoop\nBlueStacks\nLDPlayer");
+  }
 });
+bot.on("message", (msg) => {
+  const text = msg.text;
 
-bot.onText(/\/iphone/, (msg) => {
-  bot.sendMessage(msg.chat.id, "🍎 Send your iPhone Model\n\nExample:\niPhone 15 Pro Max");
-});
+  if (text.startsWith("Device:")) {
+    const lines = text.split("\n");
 
-bot.onText(/\/pc/, (msg) => {
-  bot.sendMessage(msg.chat.id, "💻 Enter your Emulator Name\n\nExample:\nGameLoop\nBlueStacks\nLDPlayer");
-});
+    const device = lines[0].replace("Device:", "").trim();
+    const ram = lines[1].replace("RAM:", "").trim();
 
-bot.onText(/\/sensi/, (msg) => {
-  bot.sendMessage(msg.chat.id, `📱 Send Your Device & RAM
-
-Example:
-
-Device: Nothing Phone 3a Pro
-RAM: 12GB
-
-Supported Devices:
-📱 Android
-🍎 iPhone
-💻 PC Emulator`);
-});
-  bot.sendMessage(msg.chat.id, `🔥 PABLO XER 🔥
+    bot.sendMessage(msg.chat.id, `🔥 PABLO XER 🔥
 
 📱 Device: ${device}
 💾 RAM: ${ram}
-
-━━━━━━━━━━━━━━━━━━━━━━
 
 🎯 Recommended Sensitivity
 
@@ -58,16 +58,13 @@ Supported Devices:
 🎯 Sniper Scope : 140
 👀 Free Look : 160
 
-━━━━━━━━━━━━━━━━━━━━━━
-
 📶 Recommended DPI
 
-🟢 Low-End : 560
-🟡 Mid-End : 680
-🔴 High-End : 720
+🎯 DPI : 720
 
 ━━━━━━━━━━━━━━━━━━━━━━
-⚡ Powered by PABLO XER
-🚀 Best Settings for Free Fire
+⚡ Powered by PABLO XER 💀
+🚀 Best Settings for Free Fire 🔥🫶🏻
 ━━━━━━━━━━━━━━━━━━━━━━`);
+  }
 });
