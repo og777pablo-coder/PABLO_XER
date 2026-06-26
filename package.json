@@ -1,0 +1,12 @@
+{
+  "name": "og-pablo-xer-bot",
+  "version": "1.0.0",
+  "description": "OG PABLO XER Free Fire Bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "node-telegram-bot-api": "^0.66.0"
+  }
+}
